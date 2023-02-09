@@ -4,7 +4,7 @@ js concepts and practice
 
 
 
-# --------------- Stack------------------------- last in first out -------
+--------------- Stack------------------------- last in first out -------
 
 A stack is a linear data structure, which means that all elements are arranged in sequential order. It results that the push and pop operations can only happen at one end of the structure, in this case, the top of the stack.
 
