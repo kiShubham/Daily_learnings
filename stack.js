@@ -216,6 +216,7 @@ console.log(nextLargerElement(arr.length, arr));
 
 // 2. nearest greater element to left ;****************
 
+/*
 function nearestGreaterElementOnLeft(n, arr) {
   let ans = [];
   let stack = [];
@@ -242,3 +243,118 @@ function nearestGreaterElementOnLeft(n, arr) {
 let arr = [1, 3, 4, 2];
 // ans = [-1,-1,-1, 4]
 console.log(nearestGreaterElementOnLeft(arr.length, arr));
+
+
+*/
+
+// 3. nearest Smaller to Left *******************
+
+// let arr = [1,3,4,2]
+// ans = [-1,1,3,1]
+
+/*
+function nearestSmallerToLeft(n, arr) {
+  let stack = [];
+  let ans = [];
+  for (var i = 0; i < n; i++) {
+    if (stack.length == 0) {
+      ans.push(-1);
+    } else if (stack[stack.length - 1] < arr[i]) {
+      ans.push(stack[stack.length - 1]);
+    } else if (stack[stack.length - 1] >= arr[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] >= arr[i]) {
+        stack.pop();
+      }
+      if (stack.length == 0) ans.push(-1)
+      else if (stack[stack.length - 1] < arr[i])
+        ans.push(stack[stack.length - 1]);
+    }
+  stack.push( arr[i] );
+  }
+ return ans ;  
+}
+
+// let arr = [1,3,4,2]
+// ans = [-1,1,3,1]
+let arr = [1, 3, 0, 0, 0, 1, 2];
+//  ans = [-1, 1, -1, -1, -1, 0, 1];
+console.log(nearestSmallerToLeft( arr.length, arr ))
+
+*/
+
+// 4. nearest Smaller to Right *******************
+
+// arr = [1, 3, 2, 4];
+// ans = [-1, 2, -1, -1];
+
+/*
+function nearestSmallerToRight(n, arr) {
+  let stack = [];
+  let ans = [];
+  for (var i = n - 1; i >= 0; i--) {
+    if (stack.length == 0) {
+      ans.push(-1);
+    } else if (stack[stack.length - 1] < arr[i]) {
+      ans.push(stack[stack.length - 1]);
+    } else if (stack[stack.length - 1] >= arr[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] >= arr[i]) {
+        stack.pop();
+      }
+      if (stack.length == 0) ans.push(-1);
+      else if (stack[stack.length - 1] < arr[i])
+        ans.push(stack[stack.length - 1]);
+    }
+    stack.push(arr[i]);
+  }
+  return ans.reverse();
+}
+
+// let arr = [1,3,4,2]
+// ans = [-1, 2, 2, -1];
+let arr = [1, 3, 0, 0, 0, 1, 2];
+// ans = [0, 0, -1, -1, -1, -1, -1];
+console.log(nearestSmallerToRight(arr.length, arr));
+
+*/
+
+// 5. Stock span Problem **********************
+
+// Design an algorithm that collects daily price quotes for some stock and returns the span of that stock's price for the current day.
+// The span of the stock's price in one day is the maximum number of **consecutive days** (starting from ** that day and going backward**) for which the stock price was **less than or equal** to the price of that day.
+
+let arr = [1, 3, 0, 0, 0, 1, 2] ;
+//  ans = [1, 2, 1, 2, 3, 4, 5] ;
+// let arr = [100, 80, 60, 70, 60, 75, 85, 110];// (5-1), (6-0)
+//     ans = [1, 1,  1,  2,  1,  4,  6, 8];
+//                             //  3,  3
+// for day 6(75) -> 75(itself),60,70,60
+
+function span( n, arr) {
+  let stack = [] ;
+  let ans = [] ;
+
+  for(var i = 0 ; i < n ;i++ ){
+
+    if(stack.length == 0){
+      ans.push(1);
+    }
+    else if(stack[stack.length - 1] > arr[i]){
+      ans.push(1);
+    }
+    else if( stack[stack.length - 1] <= arr[i] ){
+      let x = 1
+      let count = 1 ;
+      while(stack[stack.length - x] <= arr[i] && stack.length > 0){
+        x++;
+        //stack.pop nhi karna pade isiliye x use kar h ;
+        count++;
+      }
+      ans.push(count);
+    }
+    stack.push(arr[i]);
+  }
+  return ans ;
+
+}   
+
+console.log(span(arr.length ,arr))
