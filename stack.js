@@ -153,104 +153,92 @@ console.log(mystack); // Stacks { arr: [ 5, 4, 8 ] }
   //                         } 
   //     }  
 
-*/
+*/ //----------------------------------------------------------------------------
 
-// questions
-// let arr = [1, 3, 2, 4]
+//------------------------------ questions ------------------------------------------------
+
+//  1. nearest greater element in right ; *************
+/*
+// let arr = [1, 3, 2, 4];
 // ans =  [3, 4, 4,-1]
-// let arr =[1,3,0,0,1,2,4]
+// let arr = [1, 3, 0, 0, 1, 2, 4];
 //ans = [3,4,1,1,2,4,-1];
-let arr= [3,4,4,1];
+// let arr= [3,4,4,1];
 // console.log(arr.reverse())
 // let ans = [] ;
 // console.log(!ans[ans.length -1]);
 
-/*
 function nextLargerElement(n, arr) {
-
-
-  let stack = [] ;//stack.top is stack[stack.length - 1]
-  let ans = [] ;
- 
-  for( var i = n-1; i >= 0; i-- ){
-   //stack contain element right side of arr[i];as asked in Qs;
-    stack.push( arr[i + 1]);
-    if(stack[stack.length - 1] == undefined) stack.pop();
-    console.log(arr[i] , stack);
- 
-    if( stack.length == 0) {//if  stack is empty;
-      ans.push( -1 )
+  let stack = []; //stack.top is stack[stack.length - 1]
+  let ans = [];
+  for (var i = n - 1; i >= 0; i--) {
+    if (stack.length == 0) {
+      ans.push(-1);
+    } else if (stack[stack.length - 1] > arr[i]) {
+      ans.push(stack[stack.length - 1]);
+    } else if (stack[stack.length - 1] <= arr[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] <= arr[i]) {
+        stack.pop();
+      }
+      if (stack.length == 0) {
+        ans.push(-1);
+      } else if (stack[stack.length - 1] > arr[i]) {
+        ans.push(stack[stack.length - 1]);
+      }
     }
-    else if( stack[stack.length - 1] > arr[i] ){
-      ans.push(stack[stack.length - 1]) //if stack top value is greater than arr[i];
-    }
-    else {
-      //
-      while( stack.length !== 0 ){ 
-
-        if(arr[i] < stack[stack.length-1] ) {
-          ans.push(stack[stack.length - 1]) 
-          break;// && arr[i] >= stack[stack.length -1] 
-        }
-        else if( arr[i] >= stack[stack.length - 1] ){
-          stack.pop();
-        }
-        else if(stack.length == 0) {
-          ans.push(-1)
-        }
-        }
-    }
+    // console.log(ans, arr[i], stack);
+    // console.log(arr[i], stack, ans ,stack.length);
+    stack.push(arr[i]);
   }
-  // return 0;
   return ans.reverse();
 }
-console.log(nextLargerElement(4,arr));
-*/
 
-function nextLargerElement(n, arr) {
-
-
-  let stack = [] ;//stack.top is stack[stack.length - 1]
-  let k = stack.length;
-  let ans = [] ;
- for(var i = n-1; i >= 0 ; i--){
-  
-  if(k == 0){
-    ans.push(-1);
-  }
-  else if( stack[k - 1] > arr[i] ){
-    ans.push(stack[k - 1]) 
-  }
-  else if( stack[k - 1] < arr[i] ){
-
-    while( k > 0 && stack[k -1 ] <= arr[i] ){
-      stack.pop();
-    }
-    if(k == 0) ans.push(-1)
-    else if( stack[k - 1] > arr[i] ) ans.push(stack[k-1]);
-  }
-  // console.log(arr[i], stack);
-  stack.push( arr[i] );
-  
- }
- ans.reverse();
-}
-console.log(nextLargerElement(4,arr));
-
+// let arr = [1, 3, 0, 0, 0, 1, 2]; // [3,-1,1,1,1,2,-1]
+//ans = [3,4,1,1,2,4,-1];
+console.log(nextLargerElement(arr.length, arr));
 
 // class Stack{
 //   constructor(){
-//     this.arr = [] ;    
-//     this.top = arr[arr.length-1] ; 
+//     this.arr = [] ;
+//     this.top = arr[arr.length-1] ;
 //   }
 //   add(){
 //     if(this.arr.length = 0){
 //       return ans.push(-1)
-//     }else if( ) 
+//     }else if( )
 //   }
 //   display(){
-     
+
 //   }
 // }
 
+*/
 
+// 2. nearest greater element to left ;****************
+
+function nearestGreaterElementOnLeft(n, arr) {
+  let ans = [];
+  let stack = [];
+  for (var i = 0; i < n; i++) {
+    if (stack.length == 0) {
+      ans.push(-1);
+    } else if (stack[stack.length - 1] > arr[i]) {
+      ans.push(stack[stack.length - 1]);
+    } else if (stack[stack.length - 1] <= arr[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] <= arr[i]) {
+        stack.pop();
+      }
+      if (stack.length == 0) {
+        ans.push(-1);
+      } else if (stack[stack.length - 1] > arr[i]) {
+        ans.push(stack[stack.length - 1]);
+      }
+    }
+    stack.push(arr[i]);
+  }
+  return ans;
+}
+
+let arr = [1, 3, 4, 2];
+// ans = [-1,-1,-1, 4]
+console.log(nearestGreaterElementOnLeft(arr.length, arr));
