@@ -138,6 +138,7 @@ console.log(mystack); // Stacks { arr: [ 5, 4, 8 ] }
   //                                 next: null } 
   //                 }  
   //     }
+  // raw => 3 <-- 2 <-- 1 <-- Null;
   // raw => 1 --> 2 --> 3 --> Null;
       
      
@@ -322,13 +323,14 @@ console.log(nearestSmallerToRight(arr.length, arr));
 // Design an algorithm that collects daily price quotes for some stock and returns the span of that stock's price for the current day.
 // The span of the stock's price in one day is the maximum number of **consecutive days** (starting from ** that day and going backward**) for which the stock price was **less than or equal** to the price of that day.
 
-let arr = [1, 3, 0, 0, 0, 1, 2] ;
+// let arr = [1, 3, 0, 0, 0, 1, 2] ;
 //  ans = [1, 2, 1, 2, 3, 4, 5] ;
 // let arr = [100, 80, 60, 70, 60, 75, 85, 110];// (5-1), (6-0)
 //     ans = [1, 1,  1,  2,  1,  4,  6, 8];
 //                             //  3,  3
 // for day 6(75) -> 75(itself),60,70,60
 
+/*
 function span( n, arr) {
   let stack = [] ;
   let ans = [] ;
@@ -346,7 +348,7 @@ function span( n, arr) {
       let count = 1 ;
       while(stack[stack.length - x] <= arr[i] && stack.length > 0){
         x++;
-        //stack.pop nhi karna pade isiliye x use kar h ;
+        //stack.pop nhi karna pade isiliye x use kar rhe h ;
         count++;
       }
       ans.push(count);
@@ -358,3 +360,73 @@ function span( n, arr) {
 }   
 
 console.log(span(arr.length ,arr))
+
+*/
+
+// using proper stack concept
+// use two array separate as idx and stack ;
+//isee muhse nhi hua h  linkedlist use karna padega !
+/*
+
+function span(n, arr) {
+  let stack = [];
+  let ans = [];
+  let idx = [];//idx is nglIdx;
+  for (var i = 0; i < n; i++) {
+    if (stack.length == 0) {
+      // ans.push(-1);
+      idx.push(-1);
+    }
+    else if (stack[stack.length - 1] > arr[i]){
+      // ans.push(stack[stack.length - 1])
+      idx.push(i - 1)
+    }
+    else if (stack[stack.length - 1] <= arr[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] <= arr[i]) {
+        stack.pop();
+      }
+      if (stack.length == 0) idx.push(-1);
+      else if (stack[stack.length - 1] > arr[i])
+        // ans.push(stack[stack.length - 1])
+        idx.push(stack.length - 1)
+    }
+    stack.push(arr[i]);
+  }
+
+  console.log(idx);
+  // return ans;
+}
+// orgIdx =[ 0 , 1,  2,  3,  4,  5,  6,  7 ]
+// let arr = [100, 80, 60, 70, 60, 75, 85, 110]; // (5-1), (6-0)
+//ansngl =[-1, 100, 80, 80, 70, 80, 100, -1];
+//nglIdx=[-1,   0,  1,  1,  3,  1,  0 , -1 ];
+// ans = orgIdx - nglIdx;
+//         [0, 1, 2 , 3 ,4 ,5 ,6 ,7]
+let arr = [110,45,90,70,66,67,68,44]
+// idx =  [ -1, 0, 0, 2, 3, 3, 3,6]
+console.log(span(arr.length, arr));
+
+*/
+
+// soluntion on gfg ;
+
+function span(n, arr) {
+  let stack = [];
+  let ans = [];
+  for (let i = 0; i < n; i++) {
+    while (stack.length !== 0 && arr[stack[stack.length - 1]] <= arr[i]) {
+      stack.pop();
+    }
+    if (stack.length == 0) {
+      ans.push(i + 1);
+    } else if (arr[stack[stack.length - 1]] > arr[i]) {
+      let top = stack[stack.length - 1];
+      ans.push(i - top);
+    }
+    stack.push(i);
+  }
+  return ans;
+}
+let arr = [100, 80, 60, 70, 60, 75, 85, 110];
+  // ans =[ 1,  1,  1,  2,  1,  4,  6,  8 ];
+console.log(span(arr.length, arr));
