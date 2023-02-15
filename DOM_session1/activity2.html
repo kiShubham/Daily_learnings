@@ -1,0 +1,51 @@
+<!-- search in list -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="names">
+      <li>John</li>
+      <li>Mary</li>
+      <li>Dora</li>
+      <li>Donny</li>
+    </ul>
+
+    <script>
+      // console.log(document.getElementById("names"));
+      // <ul id="names">…</ul> // html node/tag ;
+      let listNames = document.getElementById("names");
+      let htmlList = listNames.getElementsByTagName("li");
+      // console.log(htmlList);
+      // returns a html collection
+      //converting htmlcoll --> array ;
+      let list = Array.from(htmlList);
+      // console.log(list); //(4) [HTMLLIElement, HTMLLIElement, HTMLLIElement, HTMLLIElement];
+
+      function searchPerson(Id, name) {
+        let arrList = Array.from(
+          document.getElementById(Id).getElementsByTagName("li")
+        );
+        // return arrList; // returning the array;
+        // now check the name exists in the array ;
+        // 1.
+        for (let i = 0; i < arrList.length; i++) {
+          // console.log(arrList[i].textContent);
+          if (arrList[i].textContent == name) return "Found";
+          return "Not Found";
+        }
+      }
+      console.log(searchPerson("names", "John")); //Found ;
+      // console.log(searchPerson("names", "shubham")); //NotFound ;
+
+      // const pets = ["cat", "dog", "bat"];
+      // console.log(pets.includes("cat"));
+      // Expected output: true
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="news">
+      <h1>Headline!</h1>
+      <p>Martians attack people!</p>
+    </div>
+
+    <script>
+      // Headline! Martians attack people!
+      console.log(document.getElementById("news"));
+      //html element;
+
+      console.log(document.getElementById("news").innerText);
+      /**
+       * Headline!
+       * Martians attack people!
+       */
+      console.log(document.getElementById("news").textContent);
+
+      /*
+        Headline!
+        Martians attack people!
+      */
+      console.log(document.getElementById("news").innerHTML);
+      /**
+      <h1>Headline!</h1>
+      <p>Martians attack people!</p>
+      */
+
+      setTimeout(() => {
+        document.getElementById("news").innerHTML =
+          "<h1>Breaking news!</h1><p>innerHTML makes it super easy  to set HTML for an element</p>";
+      }, 2000);
+
+      setTimeout(() => {
+        document.getElementById("news").innerText =
+          "this is good to use innerText over textContent";
+      }, 5000);
+      // setTimeout(() => {
+      //   document.getElementById("news").textContent =
+      //     "this is good to use innerText over textContent";
+      // }, 5000);
+    </script>
+  </body>
+</html>

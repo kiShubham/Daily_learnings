@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>
+      Although NodeList is not an Array, it is possible to iterate over it with
+      forEach().
+    </h2>
+    <h3>
+      NODE List works like Array ,and can perform operations such as
+      nodelist.length, forEach,basic for loop etc.
+    </h3>
+    <h8>
+      <ul>
+        <li>
+          To select elements based on CSS queries like div li or div > p we can
+          use<b> querySelector</b> to find the first element which matches the
+          query. <b>It returns a single HTML element</b>;
+        </li>
+        <li>
+          To find all elements we use <b>querySelectorAll.</b> It returns a
+          <b>Node List </b> which is again an <b>Array-like iterable.</b>
+        </li>
+      </ul>
+    </h8>
+
+    <h1 class="heading">
+      Seven Wonders of the world
+    </h1>
+    <h2 id="taj" class="wonderName">
+      Taj Mahal
+    </h2>
+    <h2 class="wonderName">
+      Eiffel Tower
+    </h2>
+    <p data="importantPara">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi quaerat
+      reprehenderit a reiciendis repellendus autem dolorum numquam cum fuga,
+      soluta sint veniam? Eos esse magni praesentium ad autem similique rerum.
+    </p>
+    <script>
+      let x = document.querySelector(".heading");
+      // console.log(x); // return DOM NOdE / a single Html Element ;
+      /*  <h1 class="heading">
+           Seven Wonders of the world
+            </h1>
+      */
+
+      let y = document.querySelectorAll(".wonderName");
+      console.log(y); // return a " Node LIST ";
+      console.log(y[0].innerText); // Taj mahal ;
+      console.log(y.length); // 2 ;
+      for (let i = 0; i < y.length; i++) {
+        console.log("hi");
+        break;
+      } //therefore NODE list works like Arrays even without conversion;
+      // y.forEach((element) => {
+      //   console.log(element);
+      // });
+      //Although NodeList is not an Array, it is possible to iterate over it with forEach().
+      let arr = Array.from(y);
+      // console.log(arr); // become an array ;
+      /*
+      (2) [HTMLHeadingElement, HTMLHeadingElement]
+        0: <h2 id="taj" class="wonderName">
+            Taj Mahal
+            </h2>
+        1: <h2 class="wonderName">
+              Eiffel Tower
+            </h2>
+      */
+      //console.log(arr[1].innerHtml == "Eiffel Tower"); // or .textContent;
+      //false;
+
+      // console.log(arr[1].innerText == "Eiffel Tower"); //**very important**
+      // true ,hence use innerText not textContent ;
+
+      // console.log(document.querySelector(".wonderName#taj"));
+      /*
+      <h2 id="taj" class="wonderName">
+      Taj Mahal
+      </h2>
+      */
+      // console.log(document.querySelector("p[data=importantPara"));
+      // console.log(document.querySelector("p[data=importantPara]")); //both work same "]" may be not use ;
+      //<p data="importantPara">…</p> // data is custom attribute;
+
+      let htmlColl = document.getElementsByClassName("wonderName");
+      console.log(htmlColl);
+      //HTMLCollection {0: HTMLHeadingElement, 1: HTMLHeadingElement, length: 2, item: ƒ item(), namedItem: ƒ namedItem()…}
+
+      // htmlColl.forEach((element) => {
+      //   console.log(element);
+      // });//not working forEach doesn't working for
+      // html collection;
+
+      Array.from(htmlColl).forEach((element) => {
+        console.log(element);
+      }); //now its working cuz htmlcollection --> Array by using Array.from ;
+      // for Each works for NODE list and array ;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section id="card">
+      <h1>New Student Name</h1>
+      <h3>Role</h3>
+      <p>Bio Text Goes Here</p>
+    </section>
+
+    <script>
+      //  Use the starter HTML here and write a function updateCard(elem, name, role, bio) which takes in an element to update, name, role, and bio as strings and changes the content on the screen.
+      // let x = document.getElementById("card");
+      // console.log(x);
+
+      // let y = x.getElementsByTagName("h1");
+      // console.log(y); // y is a html collection having one element;
+
+      // let z = Array.from(y);
+      // console.log(z); // z is an array[<h1>New Student Name</h1>] ;
+
+      // z[0].innerText = "shubham";//changed ;
+
+      /* in a single line
+      Array.from(
+        document.getElementById("card").getElementsByTagName("h1")
+      )[0].innerText = "SHUBHAM";
+      */
+
+      function updateCard(elem, name, role, bio) {
+        let x = document.getElementById(elem);
+        console.log(x); //DOM node ;
+        // DOM Node --> HTMl collection --> Array -> then change the arrayelement;
+        Array.from(x.getElementsByTagName("h1"))[0].innerText = name;
+        Array.from(x.getElementsByTagName("h3"))[0].innerText = role;
+        Array.from(x.getElementsByTagName("p"))[0].innerText = bio;
+        return "hurray";
+      }
+      console.log(updateCard("card", "shubham", "student", "he is unknown"));
+      console.log(updateCard("card", "kick", "student", "he is unknown"));
+    </script>
+  </body>
+</html>

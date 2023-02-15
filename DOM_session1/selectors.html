@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>css</li>
+      <li>html</li>
+      <li>javascript</li>
+    </ul>
+    <ul>
+      <li>React</li>
+      <li>angular</li>
+      <li>vue</li>
+    </ul>
+
+    <p class="para">
+      this is first para.
+    </p>
+    <p class="para" id="mypara">this is <span>second</span> para.</p>
+    <p class="para">
+      this is third para;
+    </p>
+
+    <script>
+      let htmlCollection = document.getElementsByTagName("ul");
+      console.log(htmlCollection);
+      //return a html collections ;
+
+      //converting the html collection into array ;
+      //let arrayColl = Array.from(htmlCollection);
+      // console.log(arrayColl);
+
+      console.log(document.getElementsByClassName("para"));
+      //html collection of para class;
+
+      console.log(document.getElementById("mypara").innerText);
+      //only text ;
+      console.log(document.getElementById("mypara").textContent);
+      //only text content ; // this is text content ;
+
+      console.log(document.getElementById("mypara").innerHTML);
+      // this is <span>second</span> para.
+
+      console.log(document.getElementsByTagName("body")[0].innerHTML);
+      //returns the whole body ;
+      /**
+         <ul>
+      <li>css</li>
+      <li>html</li>
+      <li>javascript</li>
+    </ul>
+    <ul>
+      <li>React</li>
+      <li>angular</li>
+      <li>vue</li>
+    </ul>
+
+    <p class="para">
+      this is first para.
+    </p>
+    <p class="para" id="mypara">this is <span>second</span> para.</p>
+    <p class="para">
+      this is third para;
+    </p>
+
+    <script> ... <script> 
+      */
+    </script>
+  </body>
+</html>

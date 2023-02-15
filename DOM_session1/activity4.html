@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h4>
+      Write a function appendToParent(parent, childTagType, text) to add a new
+      child to the parent with the given childTagType and the given text content
+      for the child.
+    </h4>
+    <ol id="elem">
+      <li>Hello</li>
+      <li>World</li>
+    </ol>
+
+    <script>
+      function appendToParent(parent, childTagType, text) {
+        //method 2;
+        let child = document.createElement(childTagType);
+        child.innerText = text;
+        parent.append(child);
+
+        // parent is a dom node
+        //method 1;
+        // parent.innerHTML =
+        // parent.innerHTML + `<${childTagType}>${text}<${childTagType}>`;
+      }
+      let parentElement = document.getElementById("elem");
+      // console.log(parentElement); //DOM node
+
+      appendToParent(parentElement, "li", "Newly added");
+    </script>
+  </body>
+</html>

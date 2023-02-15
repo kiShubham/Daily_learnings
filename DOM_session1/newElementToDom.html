@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>adding new Element to dom</h1>
+    <h3>2 methods</h3>
+
+    <ul id="mylist">
+      <li>list item 1</li>
+      <li>list item 2</li>
+      <li>list item 3</li>
+      <li>list item 4</li>
+      <li>list item 5</li>
+    </ul>
+
+    <script>
+      //method 1 ;
+      let getExistingElement = document.getElementById("mylist");
+      // console.log(getExistingElement); //Dom Node ; not an object;
+      getExistingElement.innerHTML =
+        getExistingElement.innerHTML + "<li>list item 6</li>";
+
+      //method 2 :
+      let newElement = document.createElement("li");
+      newElement.innerText = "list item 7";
+      getExistingElement.append(newElement);
+
+      // wrong way
+      // let x = getExistingElement.getElementsByTagName("li");
+      // let arr = Array.from(x);
+      // console.log(arr);
+      // arr.push("<li>list item 8</li>");
+    </script>
+  </body>
+</html>
