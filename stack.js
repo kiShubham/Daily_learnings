@@ -409,7 +409,7 @@ console.log(span(arr.length, arr));
 */
 
 // soluntion on gfg ;
-
+/*
 function span(n, arr) {
   let stack = [];
   let ans = [];
@@ -430,3 +430,164 @@ function span(n, arr) {
 let arr = [100, 80, 60, 70, 60, 75, 85, 110];
   // ans =[ 1,  1,  1,  2,  1,  4,  6,  8 ];
 console.log(span(arr.length, arr));
+
+
+*/
+
+//nearestGreaterElementOnLeft using liked list
+/*
+function nearestGreaterElementOnLeft(n, arr) {
+  let ans = [];
+  let stack = [];
+  for (var i = 0; i < n; i++) {
+    if (stack.length == 0) {
+      ans.push(-1);
+    } else if (stack[stack.length - 1] > arr[i]) {
+      ans.push(stack[stack.length - 1]);
+    } else if (stack[stack.length - 1] <= arr[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] <= arr[i]) {
+        stack.pop();
+      }
+      if (stack.length == 0) {
+        ans.push(-1);
+      } else if (stack[stack.length - 1] > arr[i]) {
+        ans.push(stack[stack.length - 1]);
+      }
+    }
+    stack.push(arr[i]);
+  }
+  return ans;
+}
+*/
+
+// ==================================================================================
+/*
+
+class Node {
+  constructor(data, index) {
+    this.first = data; //
+    this.second = index;
+    this.next = null;
+    //very imp -here null is claryfying that this is a node
+  }
+}
+
+class Stacks {
+  constructor() {
+    this.top = null; // node
+    // this.idx = null;
+    this.length = 0;
+  }
+  append(value) {
+    let myNode = new Node(value);
+    //now before appending check elements in linkedlist
+    // 1.if linkedlist is empty
+    if (this.length == 0) {
+      this.top = myNode;
+      // this.idx =
+    } else {
+      let holdingpointer = this.top; //holdingpointer become null
+      this.top = myNode; // this.top become the myNode means the value;
+      myNode.next = holdingpointer; // mynode.next means previous value of top become (holdingpointer)i.e, null ;
+      //therefore,     null <--- top
+    }
+    this.length++; //updating the lenth of linked list ;
+  }
+  display() {
+    return this.top;
+  }
+  delete() {
+    let newTop = this.top.next; // this.top = 3,this.top.next = 2;so now modify value of this.top to 2 ;
+    this.top = newTop; //now  this.top = 2
+    this.length--; //updating length of linkedlist;
+  }
+
+  pop() {
+    if (!this.top) {
+      return null;
+    }
+    if (this.top === this.bottom) {
+      //for this make this.bottom property inside constructor;
+      this.bottom = null;
+    }
+    const newTop = this.top.next;
+    this.top = newTop;
+    this.length--;
+    return this;
+  }
+}
+
+let mystack = new Stacks();
+//console.log(mystack);// Stacks { top: null, length: 0 }
+mystack.append(1);
+mystack.append(2);
+mystack.append(3);
+// console.log(mystack.display());
+mystack.append(5);
+console.log(mystack.display()); // returnig whole object ;
+console.log(mystack.display().first); // returning the stack.top element;
+
+
+*/
+
+///////
+
+// stock span using proper stacks ------------------------
+
+/*
+
+function span(n, arr) {
+  let ans = [];
+  let stack = [];
+  for (var i = 0; i < n; i++) {
+    if (stack.length == 0) {
+      ans.push(-1);
+    } else if (stack[stack.length - 1] > arr[i]) {
+      ans.push(stack[stack.length - 1]);
+    } else if (stack[stack.length - 1] <= arr[i]) {
+      while (stack.length > 0 && stack[stack.length - 1] <= arr[i]) {
+        stack.pop();
+      }
+      if (stack.length == 0) {
+        ans.push(-1);
+      } else if (stack[stack.length - 1] > arr[i]) {
+        ans.push(stack[stack.length - 1]);
+      }
+    }
+    stack.push([arr[i], i]);
+  }
+}
+*/
+/////////////////////////////////////////////////////////////////////////////
+
+// find the index of nearest Greater Element On Left  ;z
+// /*
+function nearestGreaterElementOnLeft(n, arr) {
+  let ans = [];
+  let stack = [];
+  for (var i = 0; i < n; i++) {
+    if (stack.length == 0) {
+      ans.push(-1);
+    } else if (stack[stack.length - 1][0] > arr[i]) {
+      //check value ; at [0]
+      ans.push(stack[stack.length - 1][1]); //index chahiye
+    } else if (stack[stack.length - 1][0] <= arr[i]) {
+      while (stack.length > 0 && stack[stack.length - 1][0] <= arr[i]) {
+        stack.pop();
+      }
+      if (stack.length == 0) {
+        ans.push(-1);
+      } else if (stack[stack.length - 1][0] > arr[i]) {
+        ans.push(stack[stack.length - 1][1]);
+      }
+    }
+    stack.push([arr[i], i]);
+  }
+  return ans;
+}
+// */
+let arr = [100, 80, 60, 70, 60, 75, 85];
+// [-1, 100, 80, 80, 70, 80, 100];
+//index [-1,0,1,1,3,1,0] we need ; we get
+console.log(nearestGreaterElementOnLeft(arr.length, arr));
+// console.log(arr[0][1]);
