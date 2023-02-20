@@ -588,6 +588,7 @@ function nearestGreaterElementOnLeft(n, arr) {
 // */
 let arr = [100, 80, 60, 70, 60, 75, 85];
 // [-1, 100, 80, 80, 70, 80, 100];
-//index [-1,0,1,1,3,1,0] we need ; we get
+// index[(-1, 0, 1, 1, 3, 1, 0)];
+// aswe need ; we get
 console.log(nearestGreaterElementOnLeft(arr.length, arr));
 // console.log(arr[0][1]);
